@@ -1,0 +1,122 @@
+[
+  {
+    "id": "5c459190-cd47-4bd0-8400-52fc853e7c05",
+    "program": "Zo FAQs",
+    "question": "Do I need to pay to try Zo?",
+    "answer": "Zo includes a 14-day free AI and computer trial. During the trial, you can use a limited selection of AI models subject to phased usage limits, and your computer sleeps when idle. After 14 days, Zo-funded chat and ordinary computer access end. Your files stay stored and retrievable: the workspace owner can use up to seven one-hour recovery sessions to download them, or email help@zocomputer.com so support can prepare a ZIP archive of the workspace files. Upgrade to a paid plan to restore ordinary computer access. Credits and connected AI providers do not extend computer access.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:02.742Z"
+  },
+  {
+    "id": "1b0370c1-e99c-4386-ae18-d45f75e737ea",
+    "program": "Zo FAQs",
+    "question": "What AI models can I use?",
+    "answer": "Zo comes with the latest AI models for chatting, generating media, and transcribing audio. Zo is a capable agent harness with tons of built-in tools, and easily connects to all the tools you use. You can connect AI subscription providers like Codex to power the Zo agent. And you can bring your own API key to access any LLM provider.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:03.593Z"
+  },
+  {
+    "id": "820e5bd2-93cb-4a1e-ab8b-c6d3c20c58a9",
+    "program": "Zo FAQs",
+    "question": "Is my data secure? Will you train AI on my work?",
+    "answer": "Zo will never sell your data, allow advertising, or train AI models on your work. Your files and projects in your Zo are hosted in your own personal cloud. The approach is a departure from SaaS, which stores data in centralized servers using complex and proprietary architecture that traps your work. The goal is to create a self-hosting experience simple enough for anyone to use.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:04.274Z"
+  },
+  {
+    "id": "aca4006c-763c-4c51-892c-7cf218953f81",
+    "program": "Zo FAQs",
+    "question": "Is Zo like OpenClaw or Hermes?",
+    "answer": "Zo is actually the original OpenClaw — and much more. Zo launched in June 2025 and inspired Peter Steinberger. Zo just works out of the box, with a personal agent experience designed to be easy enough for anyone to use. Unlike OpenClaw or Hermes, Zo comes with a beautiful home in the cloud for your agent. No terminal setup. No Mac Mini or VPS required. If you want to, you can run Hermes or OpenClaw inside your Zo, but the Zo agent comes with all the same capabilities and more.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:04.895Z"
+  },
+  {
+    "id": "41d28500-35f1-4b2c-b31e-4c23cde65652",
+    "program": "Zo FAQs",
+    "question": "How can I get involved with the Zo community?",
+    "answer": "If you're excited about sharing Zo with your network, apply to become a Zo Ambassador at https://form.typeform.com/to/ruHPhO5n. The Zo team provides hands-on support, AI credits, and more. If you're just getting started, join the Discord at https://discord.gg/invite/zocomputer to learn from the community and the Zo team.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:05.495Z"
+  },
+  {
+    "id": "3fa45995-6c64-4e81-aaaa-ee1b8cd96e7f",
+    "program": "Zo FAQs",
+    "question": "What can trigger an automation?",
+    "answer": "Three things trigger an automation: an event (like an email arriving or a file changing), a schedule (like every morning, weekdays at 7, or the first of the month), or you — any time you ask.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:06.058Z"
+  },
+  {
+    "id": "691f6794-7b90-466d-9642-6729d794cc10",
+    "program": "Zo FAQs",
+    "question": "Does my computer need to be on for automations to run?",
+    "answer": "No. Automations run on your Zo, which is an always-on computer in the cloud. Close the laptop, get on the plane — the Friday invoice chaser still runs Friday.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:06.649Z"
+  },
+  {
+    "id": "69b5962a-048c-49c4-b256-deae417633d4",
+    "program": "Zo FAQs",
+    "question": "How is Zo different from Zapier, Make, or n8n?",
+    "answer": "Zapier, Make, and n8n are visual automation builders: you drag and connect blocks to design a workflow, and they move data between your apps along exactly the paths you diagrammed. They can't make judgment calls or create anything new. Zo is a cloud computer powered by AI with an agent that actually gets things done: you describe what you want in plain language and Zo figures out how, writing the code, making decisions, and adapting each time it runs. It can read your inbox and flag what matters, draft a reply in your voice, research a competitor, build a website, and run on a schedule while you sleep.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:07.244Z"
+  },
+  {
+    "id": "660a3f51-8e3e-41f8-a338-1aed53e3780a",
+    "program": "Zo FAQs",
+    "question": "What do automations cost to run?",
+    "answer": "Runs use your plan's included AI credits like any other Zo work, and you pick the model per automation, so a nightly file copy can run cheap while the weekly analysis gets a frontier model.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:08.809Z"
+  },
+  {
+    "id": "3efbd8c4-0d66-4071-afcb-ec85cef61ea2",
+    "program": "Zo FAQs",
+    "question": "Where do automation results go?",
+    "answer": "Wherever you want them: your inbox, a text, Telegram, Discord, or Slack, plus the work itself saved to your files. Every run also leaves its record in your chats so you can audit what happened.",
+    "milestone": "General",
+    "audience": "General",
+    "status": "published",
+    "source": "ai-generated",
+    "created_at": "2026-08-13T22:25:37.503338",
+    "updated_at": "2026-08-13T22:29:09.462Z"
+  }
+]

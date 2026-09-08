@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <rect width="40" height="40" rx="8" fill="#10100f"/>
+  <text x="20" y="27" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#d8a657" text-anchor="middle">F</text>
+  <text x="55" y="27" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#10100f" text-anchor="start">FAQ System</text>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "name": "faq-dashboard",
+  "local_port": 52469,
+  "entrypoint": "bun run dev",
+  "publish": {
+    "label": "faq-dashboard",
+    "type": "http",
+    "entrypoint": "bun run prod",
+    "published_port": 53650,
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
