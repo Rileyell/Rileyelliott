@@ -1,0 +1,15 @@
+{
+  "name": "climate-market-map",
+  "local_port": 54225,
+  "entrypoint": "bun run dev",
+  "publish": {
+    "label": "climate-market-map",
+    "type": "http",
+    "entrypoint": "bun run prod",
+    "published_port": 53580,
+    "env": {
+      "NODE_ENV": "production",
+      "ZO_CLIENT_IDENTITY_TOKEN": "none"
+    }
+  }
+}
