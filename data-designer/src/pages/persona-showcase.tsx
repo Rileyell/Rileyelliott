@@ -139,7 +139,7 @@ export default function PersonaShowcase() {
           <p className="mt-5 text-pretty leading-relaxed text-muted-foreground">
             Three charts Riley's design principles produced on a real research build — a PitchBook-sourced
             market map of 11,682 European climate tech companies (
-            <ProseLink href="https://climate-market-map-rileyell.zocomputer.io" external>
+            <ProseLink href="https://climate-market-map-rileye.zocomputer.io" external>
               full dashboard
             </ProseLink>
             ). Small multiples over one overlapping stack, a three-category donut instead of a

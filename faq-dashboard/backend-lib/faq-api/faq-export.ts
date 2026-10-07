@@ -1,20 +1,6 @@
 import type { Context } from "hono";
 import * as fs from "fs";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const EVENTS_DIR = "/home/workspace/KITE_Scouting/events";
-const SHE_NEXT_DIR = "/home/workspace/She's_Next/faq-system";
-const TNC_DIR = "/home/workspace/TNC/faq-system";
-
-function getDataPath(slug: string): string | null {
-  // Check canonical faq-dashboard/data/${slug}/faq_data.json first
-  const kitePath = `${EVENTS_DIR}/${slug}/faq_data.json`;
-  if (fs.existsSync(kitePath)) return kitePath;
-  // Legacy locations
-  if (fs.existsSync(`${SHE_NEXT_DIR}/faq_data.json`) && slug.startsWith("shes-next")) return `${SHE_NEXT_DIR}/faq_data.json`;
-  if (fs.existsSync(`${TNC_DIR}/faq_data.json`) && slug.startsWith("tnc")) return `${TNC_DIR}/faq_data.json`;
-  return null;
-}
+import { REGISTRY_PATH, resolveDataFile } from "./paths";
 
 export default async (c: Context) => {
   try {
@@ -27,8 +13,8 @@ export default async (c: Context) => {
     const event = events.find((e: any) => e.slug === slug);
     if (!event) return c.json({ error: `Event '${slug}' not found` }, 404);
 
-    const dataPath = getDataPath(slug);
-    if (!dataPath) return c.json({ error: "No FAQ data file found for this event" }, 404);
+    const dataPath = resolveDataFile(event);
+    if (!fs.existsSync(dataPath)) return c.json({ error: "No FAQ data file found for this event" }, 404);
 
     const entries: any[] = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 

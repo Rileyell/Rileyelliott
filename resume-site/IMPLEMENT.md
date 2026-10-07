@@ -7,7 +7,11 @@ provenance: con_XCsPl93lMboybzeI
 
 # Implementing the resume homepage on a new Zo account
 
-This is the source for the `/` (homepage) route on `rileyell.zo.space`. It's a zo.space
+> **Quick path:** `ZO-START.md` at the repo root covers setup in a few terminal commands.
+> This file is the detailed reference.
+
+This is the source for the `/` (homepage) route on `rileye.zo.space` (originally
+`rileyell.zo.space`). It's a zo.space
 **page route**, not a standalone app — there's no build step, no dependencies to install, and
 no service to publish. You're recreating one React component inside the new owner's Zo Space.
 
@@ -20,9 +24,10 @@ no service to publish. You're recreating one React component inside the new owne
 3. Ask Zo to create/replace the `/` page route on the new zo.space using the exact contents of
    `home.tsx` in this folder. In tool terms this is `write_space_route(path="/", route_type="page",
    code=<contents of home.tsx>, public=true)`.
-4. Update the four project links inside `home.tsx` (`PROJECTS[].links[].href`) to point at
-   *this* Zo account's published URLs once each project below has been redeployed — they'll be
-   different subdomains than `*-rileyell.zocomputer.io`.
+4. The project links inside `home.tsx` (`PROJECTS[].links[].href`) already point at
+   `*-rileye.zocomputer.io`. After each project is published, confirm its URL matches — the
+   prefix comes from each site's publish label (`draft-app`, `faq-dashboard`,
+   `climate-market-map`, `data-designer`), so a different label means a different URL.
 5. Update the contact block (email, phone, LinkedIn) if the new owner wants their own info instead
    of Riley's — this page is written in first person as Riley Elliott's resume.
 6. Publish: the homepage defaults to public on zo.space, so no extra publish step is needed beyond

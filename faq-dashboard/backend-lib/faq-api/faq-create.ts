@@ -1,8 +1,7 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import { randomUUID } from "crypto";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
+import { REGISTRY_PATH, resolveDataFile } from "./paths";
 
 function getDataFile(program: string, slug?: string): string | null {
   if (!fs.existsSync(REGISTRY_PATH)) return null;
@@ -10,7 +9,7 @@ function getDataFile(program: string, slug?: string): string | null {
   const event = registry.find(
     (e: any) => (slug ? e.slug === slug : e.program === program)
   );
-  return event?.dataFile || null;
+  return event ? resolveDataFile(event) : null;
 }
 
 export default async (c: Context) => {

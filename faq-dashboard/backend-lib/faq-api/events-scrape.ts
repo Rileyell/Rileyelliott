@@ -1,9 +1,8 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import { spawn } from "child_process";
+import { REGISTRY_PATH, SCRAPER_SCRIPT, SITE_ROOT, resolveDataFile } from "./paths";
 
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const SCRIPT_PATH = "/home/workspace/Skills/web-scraper/scripts/faq_extract.py";
 const LOG_DIR = "/dev/shm";
 
 export default async (c: Context) => {
@@ -25,18 +24,18 @@ export default async (c: Context) => {
     const logFd = fs.openSync(logFile, "a");
 
     const args = [
-      SCRIPT_PATH,
+      SCRAPER_SCRIPT,
       scrapeUrl,
       "--slug", slug,
       "--program", event.program || event.name,
-      "--data-file", event.dataFile,
+      "--data-file", resolveDataFile(event),
       "--auto-categories",
     ];
 
     const child = spawn("python3", args, {
       detached: true,
       stdio: ["ignore", logFd, logFd],
-      env: { ...process.env },
+      env: { ...process.env, FAQ_DASHBOARD_ROOT: SITE_ROOT },
     });
     child.on("error", (err) => console.error("Scrape spawn error:", err));
     child.unref();

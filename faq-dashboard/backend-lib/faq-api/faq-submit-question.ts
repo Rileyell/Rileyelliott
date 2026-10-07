@@ -1,14 +1,7 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import * as path from "path";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const EVENTS_DIR = "/home/workspace/KITE_Scouting/events";
-const LEGACY_SUBMITTED = "/home/workspace/KITE_Scouting/submitted_questions.json";
-
-function getSubmittedPath(slug: string): string {
-  return path.join(EVENTS_DIR, slug, "submitted_questions.json");
-}
+import { LEGACY_SUBMITTED, submittedPath as getSubmittedPath } from "./paths";
 
 export default async (c: Context) => {
   try {

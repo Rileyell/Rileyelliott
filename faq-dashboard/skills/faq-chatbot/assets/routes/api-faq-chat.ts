@@ -1,12 +1,17 @@
 import type { Context } from "hono";
 import * as fs from "fs";
+import * as path from "path";
 
 // ── CONFIG ──────────────────────────────────────────────────────────────────
-// Set REGISTRY_PATH to your event registry JSON file.
+// REGISTRY_PATH points at the FAQ Dashboard's event registry.
 // The route reads everything else (program name, data file path, milestones)
 // from that registry at request time — no hardcoding per event.
+// Relative dataFile paths in the registry resolve against the registry's folder.
 
-const REGISTRY_PATH = "/home/workspace/KITE_Scouting/faq-events.json";
+const REGISTRY_PATH =
+  process.env.FAQ_REGISTRY_PATH || "/home/workspace/faq-dashboard/data/faq-events.json";
+const ORG_NAME = process.env.FAQ_CHAT_ORG_NAME || "";
+const CONTACT_EMAIL = process.env.FAQ_CHAT_CONTACT_EMAIL || "";
 const MINIMAX_API_URL = "https://api.concentrate.ai/v1/chat/completions";
 const MINIMAX_MODEL = "minimax-m2-1-highspeed";
 // ────────────────────────────────────────────────────────────────────────────
@@ -35,11 +40,14 @@ function loadFaqContext(slug: string): { programName: string; faqContext: string
 
     const programName = event.program || event.name;
 
-    if (!event.dataFile || !fs.existsSync(event.dataFile)) {
+    const dataFile = event.dataFile
+      ? path.resolve(path.dirname(REGISTRY_PATH), event.dataFile)
+      : path.join(path.dirname(REGISTRY_PATH), slug, "faq_data.json");
+    if (!fs.existsSync(dataFile)) {
       return { programName, faqContext: "" };
     }
 
-    const entries: FaqEntry[] = JSON.parse(fs.readFileSync(event.dataFile, "utf-8"));
+    const entries: FaqEntry[] = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
     const published = entries.filter((e) => !e.status || e.status === "published");
 
     // Group by milestone so the context is logically organized for the model
@@ -82,17 +90,22 @@ export default async (c: Context) => {
 
     const { programName, faqContext } = ctx;
 
+    const poweredBy = ORG_NAME ? `, powered by ${ORG_NAME}` : "";
+    const contact = CONTACT_EMAIL
+      ? `the ${ORG_NAME || "program"} team at ${CONTACT_EMAIL}`
+      : "the program organizers";
+
     const systemPrompt = faqContext
-      ? `You are a helpful FAQ assistant for the ${programName} program, powered by KITE Scouting.
+      ? `You are a helpful FAQ assistant for the ${programName} program${poweredBy}.
 Answer questions about the program using the FAQ knowledge base below.
-Be concise (max 200 words). If a question is outside the FAQ scope, say so and suggest contacting the KITE Scouting team at hello@kitescouting.com.
+Be concise (max 200 words). If a question is outside the FAQ scope, say so and suggest contacting ${contact}.
 Maintain a professional and friendly tone.
 
 --- FAQ KNOWLEDGE BASE ---
 ${faqContext}
 --- END FAQ KNOWLEDGE BASE ---`
-      : `You are a helpful assistant for the ${programName} program, powered by KITE Scouting.
-The FAQ knowledge base is still being populated. Politely let the user know and suggest contacting hello@kitescouting.com for now.`;
+      : `You are a helpful assistant for the ${programName} program${poweredBy}.
+The FAQ knowledge base is still being populated. Politely let the user know and suggest contacting ${contact} for now.`;
 
     const messages = [
       { role: "system" as const, content: systemPrompt },

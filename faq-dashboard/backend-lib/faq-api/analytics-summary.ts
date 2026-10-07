@@ -1,7 +1,6 @@
 import type { Context } from "hono";
 import * as fs from "fs";
-
-const LOG_FILE = "/home/workspace/faq-dashboard/data/analytics.jsonl";
+import { ANALYTICS_LOG as LOG_FILE } from "./paths";
 
 interface RawEvent {
   ts: string;

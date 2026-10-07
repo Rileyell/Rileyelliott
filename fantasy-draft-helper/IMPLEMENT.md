@@ -7,6 +7,9 @@ provenance: con_XCsPl93lMboybzeI
 
 # Implementing the Fantasy Draft Helper on a new Zo account
 
+> **Quick path:** `ZO-START.md` at the repo root covers setup in a few terminal commands.
+> This file is the detailed reference.
+
 A full-stack fantasy football draft assistant: Bun + Hono backend, React + Vite frontend,
 SQLite (per-user session DB). Syncs a Sleeper or ESPN league, then layers a live draft room,
 waiver-wire recommendations, watchlist/insights, and a Zo-powered AI chat advisor on top.
@@ -40,15 +43,16 @@ belong to a fresh install. The app creates new per-session databases automatical
    | `SLEEPER_LEAGUE_ID` / `SLEEPER_USER_ID` | Optional | Only powers the `/api/leagues/seed` dev-convenience endpoint; normal use goes through the onboarding UI instead |
    | `DRAFT_DB_PATH` | No | Defaults to `<site-dir>/data/draft.db` relative to the app — no path edits needed on a new Zo |
 
-6. **Run preflight, then start dev:**
+6. **Run preflight and build** (don't run `bun run dev` — it never exits; Zo runs the site
+   itself):
    ```bash
    cd /home/workspace/<site-name>
    bash scripts/preflight.sh
-   bun run dev
+   bun run build
    ```
 7. **Connect a league** at the app's onboarding screen — Sleeper needs only a username; ESPN
    needs a League ID plus the `ESPN_S2`/`ESPN_SWID` cookies above.
-8. **Publish** when ready for a persistent URL, via the Zo Sites UI or `bun run prod`.
+8. **Publish** when ready for a persistent URL, via the Publish button on the Zo Sites page.
 
 ## Notes on portability
 

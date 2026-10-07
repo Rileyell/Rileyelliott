@@ -1,8 +1,7 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import * as path from "path";
-
-const LOG_FILE = "/home/workspace/faq-dashboard/data/analytics.jsonl";
+import { ANALYTICS_LOG as LOG_FILE } from "./paths";
 
 function ensureDir(p: string) {
   const dir = path.dirname(p);

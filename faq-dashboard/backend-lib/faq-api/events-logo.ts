@@ -1,7 +1,6 @@
 import type { Context } from "hono";
 import * as fs from "fs";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
+import { REGISTRY_PATH, resolveLogoFile } from "./paths";
 
 const EXT_MIME: Record<string, string> = {
   ".png": "image/png",
@@ -23,11 +22,12 @@ export default async (c: Context) => {
     const event = registry.find((e) => e.slug === slug);
     if (!event) return c.json({ error: "Event not found" }, 404);
     if (!event.logoFile) return c.json({ error: "No logo set for this event" }, 404);
-    if (!fs.existsSync(event.logoFile)) return c.json({ error: "Logo file not found on disk" }, 404);
+    const logoFile = resolveLogoFile(event.logoFile);
+    if (!fs.existsSync(logoFile)) return c.json({ error: "Logo file not found on disk" }, 404);
 
-    const ext = event.logoFile.match(/(\.[^.]+)$/)?.[1]?.toLowerCase() || ".png";
+    const ext = logoFile.match(/(\.[^.]+)$/)?.[1]?.toLowerCase() || ".png";
     const mime = EXT_MIME[ext] || "image/png";
-    const buffer = fs.readFileSync(event.logoFile);
+    const buffer = fs.readFileSync(logoFile);
 
     return new Response(buffer, {
       status: 200,

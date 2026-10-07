@@ -7,6 +7,9 @@ provenance: con_XCsPl93lMboybzeI
 
 # Implementing Riley Voss, Data Designer, on a new Zo account
 
+> **Quick path:** `ZO-START.md` at the repo root covers setup in a few terminal commands.
+> This file is the detailed reference.
+
 A custom AI persona for data-viz critique — full backstory, working style, and a compounding
 data-visualization knowledge base — blind-graded against Claude and Gemini on an 8-question
 data-viz judgment exam (93/100). This project has two parts: the **showcase site** (this folder)
@@ -39,7 +42,8 @@ and the **persona itself** (`second-brain/`), which are separate things that bot
    directory.
 3. Check `zosite.json` ports for conflicts; change if needed.
 4. `bun install` (uses the included `bun.lock`).
-5. Run dev, verify `persona-showcase.tsx` renders the benchmark results correctly, then publish.
+5. `bun run build`, then publish and check that `persona-showcase.tsx` renders the benchmark
+   results correctly (don't run `bun run dev` — it never exits; Zo runs the site itself).
 
 ## Notes
 

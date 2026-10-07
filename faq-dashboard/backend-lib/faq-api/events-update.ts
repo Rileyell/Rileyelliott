@@ -1,9 +1,7 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import * as path from "path";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const LOGOS_DIR = "/home/workspace/faq-dashboard/data/logos";
+import { REGISTRY_PATH, LOGOS_DIR, toStoredPath } from "./paths";
 
 export default async (c: Context) => {
   try {
@@ -40,7 +38,7 @@ export default async (c: Context) => {
 
       const buf = Buffer.from(await logoBlob.arrayBuffer());
       fs.writeFileSync(destPath, buf);
-      logoFile = destPath;
+      logoFile = toStoredPath(destPath);
 
     } else {
       // JSON body update

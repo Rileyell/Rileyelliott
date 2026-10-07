@@ -8,7 +8,7 @@ provenance: con_XCsPl93lMboybzeI
 # Riley Elliott — KITE Scouting 2026 Internship Projects
 
 Portable source + context for the four projects showcased on
-[rileyell.zo.space](https://rileyell.zo.space), built end-to-end on Zo Computer during a summer
+[rileye.zo.space](https://rileye.zo.space), built end-to-end on Zo Computer during a summer
 at KITE Scouting. Each project folder is self-contained: source code, any supporting "second
 brain" context it depends on (skills, knowledge bases, source data), and an `IMPLEMENT.md` with
 step-by-step instructions for standing it back up on a different Zo account.
@@ -19,11 +19,11 @@ See `HANDOFF.md` for why this repo exists and how ownership migration actually w
 
 | Folder | What it is | Live (original) |
 |---|---|---|
-| `resume-site/` | The homepage itself — a zo.space page route | https://rileyell.zo.space |
-| `fantasy-draft-helper/` | Multi-user fantasy football draft assistant — Sleeper/ESPN sync, live draft tool, waiver recommendations, AI chat | https://draft-app-rileyell.zocomputer.io |
-| `faq-dashboard/` | Point at any site, scrapes it, auto-generates a searchable FAQ hub with an AI chatbot and admin review tools | https://faq-dashboard-rileyell.zocomputer.io |
-| `climate-market-map/` | PitchBook-sourced European climate tech market intelligence dashboard (2,674 companies, contact data redacted) | https://climate-market-map-rileyell.zocomputer.io |
-| `data-designer/` | "Riley Voss" — a custom AI persona for data-viz critique, benchmarked against Claude and Gemini | https://data-designer-rileyell.zocomputer.io |
+| `resume-site/` | The homepage itself — a zo.space page route | https://rileye.zo.space |
+| `fantasy-draft-helper/` | Multi-user fantasy football draft assistant — Sleeper/ESPN sync, live draft tool, waiver recommendations, AI chat | https://draft-app-rileye.zocomputer.io |
+| `faq-dashboard/` | Point at any site, scrapes it, auto-generates a searchable FAQ hub with an AI chatbot and admin review tools | https://faq-dashboard-rileye.zocomputer.io |
+| `climate-market-map/` | PitchBook-sourced European climate tech market intelligence dashboard (2,674 companies, contact data redacted) | https://climate-market-map-rileye.zocomputer.io |
+| `data-designer/` | "Riley Voss" — a custom AI persona for data-viz critique, benchmarked against Claude and Gemini | https://data-designer-rileye.zocomputer.io |
 
 ## What's deliberately excluded
 
@@ -35,6 +35,9 @@ See `HANDOFF.md` for why this repo exists and how ownership migration actually w
   actually serves (`climate-market-map/data/companies.json`) is included.
 
 ## General setup pattern
+
+**Setting up on a new account? Start with `ZO-START.md`** — a few terminal commands, no AI
+credits needed. The rest of this section is background.
 
 Every app here was built as a **Zo Site** (a `zosite.json`-defined Bun + Vite + React project).
 On a new Zo account:

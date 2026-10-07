@@ -2,18 +2,13 @@ import type { Context } from "hono";
 import * as fs from "fs";
 import * as path from "path";
 
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const WORKSPACE = "/home/workspace";
-
-function slugToDataPath(slug: string): string {
-  return path.join(WORKSPACE, "faq-dashboard", "data", slug, "faq_data.json");
-}
+import { REGISTRY_PATH, defaultDataFile, resolveDataFile, toStoredPath } from "./paths";
 
 function getMostRecentlyBuiltEvent(registry: any[]): any | null {
   const candidates = registry
     .filter((e) => {
-      const dataFile = e.dataFile;
-      if (!dataFile || !fs.existsSync(dataFile)) return false;
+      const dataFile = resolveDataFile(e);
+      if (!fs.existsSync(dataFile)) return false;
       const entries: any[] = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
       return entries.filter((x) => (x.status || "published") === "published").length > 0;
     })
@@ -55,7 +50,7 @@ export default async (c: Context) => {
       return c.json({ error: `Event with slug "${slug}" already exists` }, 409);
     }
 
-    const dataFile = slugToDataPath(slug);
+    const dataFile = defaultDataFile(slug);
     const dataDir = path.dirname(dataFile);
     if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
     if (!fs.existsSync(dataFile)) fs.writeFileSync(dataFile, "[]");
@@ -67,8 +62,9 @@ export default async (c: Context) => {
         new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
       );
       for (const src of sorted) {
-        if (src.dataFile && fs.existsSync(src.dataFile)) {
-          const srcEntries: any[] = JSON.parse(fs.readFileSync(src.dataFile, "utf-8"));
+        const srcFile = resolveDataFile(src);
+        if (fs.existsSync(srcFile)) {
+          const srcEntries: any[] = JSON.parse(fs.readFileSync(srcFile, "utf-8"));
           const published = srcEntries.filter((e) => (e.status || "published") === "published");
           if (published.length > 0) {
             // Clone with new IDs, program set to new event name, mark provenance
@@ -100,7 +96,7 @@ export default async (c: Context) => {
       accent: accent || "#d8a657",
       adminPath,
       clientPath,
-      dataFile,
+      dataFile: toStoredPath(dataFile),
       eventUrl: eventUrl || "",
       milestones: milestones || ["Application", "Down-Select", "Program Structure", "Event Day", "Winners & Awards"],
       audiences: audiences || ["Applicants", "Finalists", "General"],

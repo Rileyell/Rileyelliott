@@ -1,9 +1,9 @@
 ---
 name: faq-chatbot
-description: Drop-in AI chatbot for any KITE FAQ dashboard. Answers questions from the scraped FAQ knowledge base for a specific event slug. Uses Minimax via the concentrate.ai endpoint. Add it to any new FAQ dashboard in two steps — deploy the shared API route (once) and embed the widget (per page).
+description: Drop-in AI chatbot for any FAQ dashboard. Answers questions from the scraped FAQ knowledge base for a specific event slug. Uses Minimax via the concentrate.ai endpoint. Add it to any new FAQ dashboard in two steps — deploy the shared API route (once) and embed the widget (per page).
 compatibility: Created for Zo Computer
 metadata:
-  author: rileyell.zo.computer
+  author: rileye.zo.computer
   created: 2026-07-16
   last_edited: 2026-07-16
   version: 1.0.0
@@ -12,13 +12,13 @@ metadata:
 
 # FAQ Chatbot Skill
 
-Adds an AI-powered chat widget to any KITE FAQ dashboard page. The chatbot reads its knowledge directly from the event's scraped `faq_data.json` file (populated by the `web-scraper` skill), keyed by event slug from the KITE event registry.
+Adds an AI-powered chat widget to any FAQ dashboard page. The chatbot reads its knowledge directly from the event's scraped `faq_data.json` file (populated by the `web-scraper` skill), keyed by event slug from the FAQ Dashboard's event registry.
 
 ## How it works
 
 1. User asks a question in the chat widget on a dashboard page.
 2. The widget POSTs `{ slug, question, history }` to `/api/faq-chat`.
-3. The API reads the event registry (`KITE_Scouting/faq-events.json`) to find the `dataFile` path for that slug.
+3. The API reads the event registry (`faq-dashboard/data/faq-events.json`) to find the `dataFile` path for that slug.
 4. It loads all published FAQ entries from `faq_data.json`, grouped by milestone, and builds a system prompt.
 5. The question + context is sent to Minimax (`minimax-m2-1-highspeed` via `concentrate.ai`).
 6. The answer streams back to the widget.
@@ -28,7 +28,7 @@ Adds an AI-powered chat widget to any KITE FAQ dashboard page. The chatbot reads
 ## Prerequisites
 
 - `MINIMAX_API_KEY` set in [Settings > Advanced](/?t=settings&s=advanced) under Secrets.
-- The event must exist in `KITE_Scouting/faq-events.json` with a valid `dataFile` path.
+- The event must exist in `faq-dashboard/data/faq-events.json`.
 - At least some FAQ entries with `status: "published"` in that file.
 
 ## Install
@@ -41,7 +41,7 @@ Create a zo.space API route at `/api/faq-chat` using the contents of `assets/rou
 write_space_route("/api/faq-chat", "api", <contents of assets/routes/api-faq-chat.ts>)
 ```
 
-This route is already live at `rileyell.zo.space` as of 2026-07-16.
+Deploy it on each new account — routes don't carry over between Zo accounts.
 
 ### Step 2 — Embed the widget in a dashboard page
 
@@ -73,7 +73,9 @@ In `assets/routes/api-faq-chat.ts`:
 
 | Constant | Default | What to change |
 |---|---|---|
-| `REGISTRY_PATH` | `KITE_Scouting/faq-events.json` | Only if you move the registry |
+| `REGISTRY_PATH` | `$FAQ_REGISTRY_PATH`, else `/home/workspace/faq-dashboard/data/faq-events.json` | Set the env var if the dashboard lives elsewhere |
+| `ORG_NAME` | `$FAQ_CHAT_ORG_NAME`, else none | Adds "powered by …" to the bot's intro |
+| `CONTACT_EMAIL` | `$FAQ_CHAT_CONTACT_EMAIL`, else none | Where the bot sends out-of-scope questions |
 | `MINIMAX_API_URL` | `https://api.concentrate.ai/v1/chat/completions` | Only if endpoint changes |
 | `MINIMAX_MODEL` | `minimax-m2-1-highspeed` | Swap for a faster/smarter model |
 

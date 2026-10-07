@@ -1,7 +1,6 @@
 import type { Context } from "hono";
 import * as fs from "fs";
-
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
+import { REGISTRY_PATH } from "./paths";
 
 export default async (c: Context) => {
   try {

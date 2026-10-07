@@ -1,9 +1,8 @@
 import type { Context } from "hono";
 import * as fs from "fs";
 import * as path from "path";
+import { REGISTRY_PATH, LOGOS_DIR, toStoredPath } from "./paths";
 
-const REGISTRY_PATH = "/home/workspace/faq-dashboard/data/faq-events.json";
-const LOGOS_DIR = "/home/workspace/faq-dashboard/data/logos";
 const MAX_SIZE = 2 * 1024 * 1024; // 2 MB
 
 const ALLOWED_MIME: Record<string, string> = {
@@ -57,10 +56,10 @@ export default async (c: Context) => {
     fs.writeFileSync(logoPath, buffer);
 
     // Update registry with logoFile path
-    registry[idx].logoFile = logoPath;
+    registry[idx].logoFile = toStoredPath(logoPath);
     fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
 
-    return c.json({ ok: true, logoFile: logoPath, mime, size: file.size });
+    return c.json({ ok: true, logoFile: registry[idx].logoFile, mime, size: file.size });
   } catch (err) {
     console.error("upload-logo error:", err);
     return c.json({ error: "Failed to upload logo" }, 500);

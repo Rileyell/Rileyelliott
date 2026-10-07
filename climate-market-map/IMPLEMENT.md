@@ -7,6 +7,9 @@ provenance: con_XCsPl93lMboybzeI
 
 # Implementing the Climate Market Map on a new Zo account
 
+> **Quick path:** `ZO-START.md` at the repo root covers setup in a few terminal commands.
+> This file is the detailed reference.
+
 A market-intelligence dashboard built on a PitchBook export of 2,674 European climate tech
 companies across 7 sectors — sector-level charts plus a searchable, sortable company table.
 
@@ -28,8 +31,9 @@ already-redacted, company-level dataset in `data/companies.json` is safe to redi
    directory.
 3. **Check `zosite.json` ports** for conflicts; change if needed.
 4. `bun install` (uses the included `bun.lock`).
-5. Run dev (`bun run dev`) — the dashboard reads `data/companies.json` directly, no database or
-   external API calls needed at runtime, so it should work immediately.
+5. `bun run build` to confirm it builds (don't run `bun run dev` — it never exits; Zo runs the
+   site itself). The dashboard reads `data/companies.json` directly, no database or external API
+   calls needed at runtime, so it should work immediately.
 6. Publish when ready.
 
 ## `data/companies.json` structure

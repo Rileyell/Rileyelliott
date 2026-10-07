@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
     tags: ["Data visualization", "PitchBook", "Market research"],
     writeup:
       "A market-intelligence dashboard built on a PitchBook export of 11,682 European climate tech companies across 6 sectors, with sector-level charts for the big picture and a searchable, sortable company table for the detail work. I built it to make a sprawling raw export actually usable for research and outreach. The public version has all personal contact fields (name, email, title) stripped from the company index since the underlying source included licensed contact data — that redaction is disclosed directly on the page.",
-    links: [{ label: "View live", href: "https://climate-market-map-rileyell.zocomputer.io" }],
+    links: [{ label: "View live", href: "https://climate-market-map-rileye.zocomputer.io" }],
     accent: "oklch(0.58 0.19 292)",
   },
   {
@@ -42,8 +42,8 @@ const PROJECTS: Project[] = [
     writeup:
       "Give it any website URL and it scrapes the content, auto-generates FAQ categories and audience types, and publishes a searchable public FAQ hub with an embedded AI chatbot. I built it to replace a manual, one-off FAQ-writing process with something repeatable: the scraper and classification pipeline do the first pass, and a separate admin dashboard lets a real person review, edit, and approve entries before anything goes live.",
     links: [
-      { label: "User side", href: "https://faq-dashboard-rileyell.zocomputer.io/faq/zo-faqs" },
-      { label: "Admin dashboard", href: "https://faq-dashboard-rileyell.zocomputer.io/" },
+      { label: "User side", href: "https://faq-dashboard-rileye.zocomputer.io/faq/zo-faqs" },
+      { label: "Admin dashboard", href: "https://faq-dashboard-rileye.zocomputer.io/" },
     ],
     accent: "oklch(0.7 0.16 145)",
   },
@@ -55,7 +55,7 @@ const PROJECTS: Project[] = [
     tags: ["Prompt engineering", "Persona design", "Benchmarked: 93/100"],
     writeup:
       "A custom AI persona — full backstory, working style, and a compounding data-visualization knowledge base — designed to bring consistent judgment to chart and dashboard critique. I built it to test whether a well-specified persona could hold its own against frontier models on a real task: it was blind-graded head-to-head against Claude and Gemini on an 8-question data-viz exam, with the grading methodology disclosed on the page rather than just the final score.",
-    links: [{ label: "View live", href: "https://data-designer-rileyell.zocomputer.io" }],
+    links: [{ label: "View live", href: "https://data-designer-rileye.zocomputer.io" }],
     accent: "oklch(0.75 0.15 80)",
   },
   {
@@ -66,7 +66,7 @@ const PROJECTS: Project[] = [
     tags: ["Full-stack", "Bun / Hono / React", "Multi-tenant"],
     writeup:
       "A full-stack fantasy football app that syncs directly with a user's Sleeper or ESPN league, then layers a live draft assistant, waiver-wire add/drop recommendations, and an AI chatbot grounded in that league's actual data on top. I built it as my capstone to go beyond a single-league personal tool — every user gets their own isolated session and database, so the app works for anyone's league, not just mine, and the draft/waiver logic reacts to real roster and scoring settings instead of generic rankings.",
-    links: [{ label: "View live", href: "https://draft-app-rileyell.zocomputer.io" }],
+    links: [{ label: "View live", href: "https://draft-app-rileye.zocomputer.io" }],
     accent: "oklch(0.65 0.19 25)",
   },
 ];
@@ -194,11 +194,11 @@ export default function Home() {
           <div className="mt-6 flex flex-wrap gap-2">
             <Tooltip label="Email">
               <a
-                href="mailto:rileyell@stanford.com"
+                href="mailto:rileyell@stanford.edu"
                 className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 <Mail className="size-4" />
-                rileyell@stanford.com
+                rileyell@stanford.edu
               </a>
             </Tooltip>
             <Tooltip label="Call">

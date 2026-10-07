@@ -7,7 +7,7 @@
     "accent": "#d8a657",
     "adminPath": "/admin?slug=zo-faqs",
     "clientPath": "/faq/zo-faqs",
-    "dataFile": "/home/workspace/faq-dashboard/data/zo-faqs/faq_data.json",
+    "dataFile": "zo-faqs/faq_data.json",
     "eventUrl": "https://www.zo.computer/",
     "milestones": [
       "General"

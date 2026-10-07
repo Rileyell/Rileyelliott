@@ -16,15 +16,12 @@ Client widget (FAQChatWidget)
   ▼
 api-faq-chat.ts
   │
-  ├─ Read /home/workspace/KITE_Scouting/faq-events.json
+  ├─ Read faq-dashboard/data/faq-events.json  (or $FAQ_REGISTRY_PATH)
   │    └─ Find event by slug → get dataFile, program name, client name
   │
   ├─ Read event.dataFile (faq_data.json)
   │    └─ Filter to status=published entries (up to 80)
   │    └─ Format as Q/A blocks with milestone + audience tags
-  │
-  ├─ (optional) Read KITE_Scouting/Events/<slug>/FAQ_Dossier.md
-  │    └─ Append first 3000 chars as program overview
   │
   ├─ Build system prompt (program identity + full FAQ block)
   │
@@ -33,11 +30,9 @@ api-faq-chat.ts
        └─ Return { response, success }
 ```
 
-## Knowledge base sources (in priority order)
+## Knowledge base source
 
-1. **`faq_data.json`** — the primary source. Written by `web-scraper/faq_extract.py`. Each entry has `question`, `answer`, `milestone`, `audience`, `status`. Only `published` entries are sent to the model.
-
-2. **`FAQ_Dossier.md`** — optional enrichment. Written by the `event-intel` skill. Provides narrative program context that may not be captured in individual Q/A pairs (e.g. program history, sponsor names, keynote speakers).
+**`faq_data.json`** — written by `web-scraper/faq_extract.py`. Each entry has `question`, `answer`, `milestone`, `audience`, `status`. Only `published` entries are sent to the model.
 
 ## Why a shared API route (not per-event routes)
 

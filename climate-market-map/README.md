@@ -8,7 +8,7 @@ Portfolio version of a European climate-tech / PitchBook market-mapping dashboar
 - Added a **Companies** tab: a searchable, sortable, paginated index of `data/companies.json` — 2,674 real PitchBook-sourced companies from a related supply-chain market-mapping dataset from the same research work. All personal contact fields (name, email, job title) were stripped from every record before publishing; a disclaimer to this effect is shown on the page itself.
 - The **Overview**, **Market Map**, and **Second Brain** tabs carry over the original sector-level analysis (aggregate stats only, no row-level data, so no PII exposure there).
 
-Live: https://climate-market-map-rileyell.zocomputer.io
+Live: https://climate-market-map-rileye.zocomputer.io
 
 Source dataset: `data/companies.json`, regenerated from `/home/.z/chat-uploads/TNC_Intern_Pitchbook_Data - Supply Chain-5b2a3a3f88bf.csv` via a one-off script that drops `Primary Contact`, `Primary Contact Email`, and `Primary Contact Title` before writing out the JSON.
 

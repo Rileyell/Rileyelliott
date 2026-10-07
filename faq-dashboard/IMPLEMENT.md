@@ -7,6 +7,9 @@ provenance: con_XCsPl93lMboybzeI
 
 # Implementing the FAQ Dashboard on a new Zo account
 
+> **Quick path:** `ZO-START.md` at the repo root covers setup in a few terminal commands.
+> This file is the detailed reference.
+
 Point it at any website URL — it scrapes the content, auto-generates FAQ categories and audience
 types, and publishes a searchable public FAQ hub with an embedded AI chatbot, plus an admin
 dashboard for reviewing/editing entries before they go live.
@@ -38,14 +41,26 @@ three Zo Skills this app depends on: `web-scraper` (the scrape + extraction pipe
    copies by design, not an oversight — keep them in sync).
 5. **Check `zosite.json` ports** don't conflict with anything already running; change if needed.
 6. `bun install` (uses the included `bun.lock`).
-7. **Set secrets** in Settings → Advanced → Secrets: `ZO_API_KEY` (for scraping/chat calls that
-   go through the Zo API) and anything the `faq-chatbot` skill's Minimax endpoint requires — see
-   `skills/faq-chatbot/SKILL.md`.
-8. Run dev (`bun run dev`), create a new FAQ event by pointing the scraper at a target URL, review
+7. **Set secrets** in Settings → Advanced → Secrets:
+   - `FAQ_EXTRACT_MODEL` — **required.** Your own BYOK model id from Settings → AI → Providers.
+     Used for FAQ scraping and OTP emails. It's account-specific, so the old account's id won't
+     work and there is no default.
+   - `ZO_API_KEY` — for scraping/chat calls that go through the Zo API.
+   - `MINIMAX_API_KEY` — for the `faq-chatbot` route (see `skills/faq-chatbot/SKILL.md`).
+   - Optional: `FAQ_CHAT_ORG_NAME` / `FAQ_CHAT_CONTACT_EMAIL` to brand the chatbot, and
+     `SLACK_FAQ_WEBHOOK_URL` for new-question notifications.
+8. `bun run build` to confirm it builds (don't run `bun run dev` — it never exits; Zo runs the
+   site itself). Then create a new FAQ event by pointing the scraper at a target URL, review
    generated entries in the admin dashboard, then publish.
 
 ## Notes
 
+- All app data (event registry, FAQ entries, submitted questions, logos, analytics) lives under
+  this site's own `data/` folder, found relative to the code — the site folder can be named
+  anything. Set `FAQ_DASHBOARD_ROOT` to move it, `FAQ_SCRAPER_SCRIPT` if the web-scraper Skill
+  isn't at `/home/workspace/Skills/web-scraper`, and `FAQ_REGISTRY_PATH` (for the zo.space
+  chatbot route) if the site folder isn't `/home/workspace/faq-dashboard`.
+- `dataFile` / `logoFile` paths in `data/faq-events.json` are stored relative to `data/`.
 - `data/faq-events.json` and `data/*/faq_data.json` are existing seed content from the original
   deployment (including a real `zo-faqs` FAQ set about Zo Computer itself) — useful as a working
   example, safe to delete if you want to start from zero.

@@ -7,6 +7,7 @@ import { MessageCircle, X, Send, Copy, Check } from "lucide-react";
 // ---- CONFIG ----
 const EVENT_SLUG = "shes-next-egypt-2026"; // ← change to your event slug
 const API_CHAT = "/api/faq-chat";
+const CONTACT_EMAIL = "you@example.com"; // ← change to your support address
 const ACCENT = "#7C3AED";
 const ACCENT_DARK = "#5B21B6";
 const ACCENT_SOFT = "#F5F3FF";
@@ -117,7 +118,7 @@ function FAQChatWidget() {
           </div>
           <div style={{ padding: "4px 16px 6px", flexShrink: 0 }}>
             <p style={{ fontSize: "0.7rem", color: "#9ca3af", margin: 0, textAlign: "center" }}>
-              Can't find your answer? <a href="mailto:hello@kitescouting.com" style={{ color: ACCENT }}>Contact KITE Scouting</a>
+              Can't find your answer? <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: ACCENT }}>Contact us</a>
             </p>
           </div>
           <div style={{ padding: "10px 14px", borderTop: "1px solid #e5e7eb", display: "flex", gap: "8px", alignItems: "flex-end", flexShrink: 0, background: "#fafafa" }}>

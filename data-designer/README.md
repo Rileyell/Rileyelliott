@@ -6,7 +6,7 @@ Portfolio showcase for "Riley Voss, Data Designer" — a custom AI persona I bui
 
 Includes a benchmark section showing the persona scored against Claude and Gemini on an 8-question data-viz judgment exam. The original 2026-08-12 grading pass was self-graded by Zo (an undisclosed conflict of interest, since Zo produced one of the three entries). It was superseded on 2026-08-25 by a blind re-grade — responses anonymized and randomly relabeled, scored by an independent subagent with no knowledge of identity, revealed only after scores locked. This page shows the blind result (Claude 99, Riley Voss 93, Gemini 84) with the methodology disclosed inline. Full record: `Documents/System/viz-benchmark-3-results.md` (v2.0) and `Documents/System/viz-benchmark-3-parametric-rubric.md` Score Log.
 
-Live: https://data-designer-rileyell.zocomputer.io
+Live: https://data-designer-rileye.zocomputer.io
 
 ## This Template: Portfolio
 

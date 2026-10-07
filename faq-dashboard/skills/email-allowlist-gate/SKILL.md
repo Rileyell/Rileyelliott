@@ -3,7 +3,7 @@ name: email-allowlist-gate
 description: Add email-based access control to any zo.space dashboard. Two tiers — simple email check (v1) or full OTP email verification (v2). Restricts visibility to specific approved email addresses without making it fully public.
 compatibility: Created for Zo Computer
 metadata:
-  author: rileyell.zo.computer
+  author: rileye.zo.computer
   category: authentication
   tag: dashboard, access-control, email-gate, otp
 ---
@@ -194,7 +194,7 @@ export default async (c: Context) => {
     headers: { Authorization: `Bearer ${zoToken}`, "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       input: `Send an email to ${email} with subject "Your access code" and this exact body:\n\nYour one-time access code is:\n\n${code}\n\nThis code expires in 10 minutes. Do not share it.\n\n— [Your name/org]`,
-      model_name: "byok:c765355c-e6c6-4c06-97de-993a238d0f1c",
+      model_name: process.env.FAQ_EXTRACT_MODEL, // your own BYOK model id (Settings > AI > Providers)
     }),
   });
 
@@ -405,6 +405,6 @@ The `ALLOWED_EMAILS` array lives in **two places** for v2 — the page route and
 
 ## Reference Implementation
 
-- **Live example:** https://rileyell.zo.space/faq-admin (v2 OTP)
+- **Live example:** https://rileye.zo.space/faq-admin (v2 OTP)
 - **API routes:** `/api/otp/send`, `/api/otp/verify`
 - **Allowlist:** riley@kitescouting.com, christiansil@zo.computer, christian@kitescouting.com

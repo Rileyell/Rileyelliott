@@ -37,9 +37,12 @@ logging.basicConfig(
 )
 log = logging.getLogger("faq_extract")
 
-WORKSPACE = Path("/home/workspace")
+# Set by the dashboard's /api/events/scrape when it launches this script.
+FAQ_DASHBOARD_ROOT = Path(os.environ.get("FAQ_DASHBOARD_ROOT", "/home/workspace/faq-dashboard"))
 
-ZO_ASK_MODEL = os.environ.get("FAQ_EXTRACT_MODEL", "byok:c765355c-e6c6-4c06-97de-993a238d0f1c")
+# Your own BYOK model id (Settings > AI > Providers). Account-specific, so
+# there is deliberately no default.
+ZO_ASK_MODEL = os.environ.get("FAQ_EXTRACT_MODEL", "")
 
 GENERIC_EXTRACTION_PROMPT = """
 You are extracting FAQ-relevant information from this website.
@@ -199,7 +202,7 @@ def build_faq_entries(extracted: dict[str, Any], program: str) -> list[dict[str,
 
 def update_registry_categories(slug: str, extracted: dict[str, Any]) -> None:
     """Push auto-detected categories + audiences back into the event registry."""
-    registry_path = WORKSPACE / "faq-dashboard" / "data" / "faq-events.json"
+    registry_path = FAQ_DASHBOARD_ROOT / "data" / "faq-events.json"
     if not registry_path.exists():
         return
     try:
@@ -258,6 +261,10 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Print without writing")
     args = parser.parse_args()
 
+    if not ZO_ASK_MODEL:
+        log.error("FAQ_EXTRACT_MODEL is not set — set it to your BYOK model id (Settings > AI > Providers)")
+        sys.exit(1)
+
     token = os.environ.get("ZO_CLIENT_IDENTITY_TOKEN", "")
     if not token:
         log.warning("No ZO_CLIENT_IDENTITY_TOKEN — AI extraction will be skipped")
@@ -286,7 +293,7 @@ def main() -> None:
 
     entries = build_faq_entries(extracted, args.program)
 
-    data_file = Path(args.data_file) if args.data_file else WORKSPACE / "faq-dashboard" / "data" / args.slug / "faq_data.json"
+    data_file = Path(args.data_file) if args.data_file else FAQ_DASHBOARD_ROOT / "data" / args.slug / "faq_data.json"
     count = write_draft_faqs(entries, data_file, dry_run=args.dry_run)
 
     summary = {

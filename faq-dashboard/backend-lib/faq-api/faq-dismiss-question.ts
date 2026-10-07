@@ -1,12 +1,6 @@
 import type { Context } from "hono";
 import * as fs from "fs";
-import * as path from "path";
-
-const EVENTS_DIR = "/home/workspace/KITE_Scouting/events";
-
-function getSubmittedPath(slug: string): string {
-  return path.join(EVENTS_DIR, slug, "submitted_questions.json");
-}
+import { submittedPath as getSubmittedPath } from "./paths";
 
 export default async (c: Context) => {
   try {
