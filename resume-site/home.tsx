@@ -26,10 +26,10 @@ const PROJECTS: Project[] = [
     kicker: "Research",
     title: "European Climate Tech Market Map",
     description:
-      "PitchBook-sourced market intelligence dashboard — 11,682 companies across 6 sectors, plus a 2,674-company searchable index with personal contact data redacted (disclosed on the page).",
+      "PitchBook-sourced market intelligence dashboard — 11,682 European climate tech companies across 6 sectors, plus a separate 2,674-company US supply chain index with personal contact data redacted (disclosed on the page).",
     tags: ["Data visualization", "PitchBook", "Market research"],
     writeup:
-      "A market-intelligence dashboard built on a PitchBook export of 11,682 European climate tech companies across 6 sectors, with sector-level charts for the big picture and a searchable, sortable company table for the detail work. I built it to make a sprawling raw export actually usable for research and outreach. The public version has all personal contact fields (name, email, title) stripped from the company index since the underlying source included licensed contact data — that redaction is disclosed directly on the page.",
+      "A market-intelligence dashboard built on a PitchBook export of 11,682 European climate tech companies across 6 sectors, with sector-level charts for the big picture, plus a separate searchable, sortable index of 2,674 US supply chain companies for the detail work. I built it to make a sprawling raw export actually usable for research and outreach. The public version has all personal contact fields (name, email, title) stripped from the company index since the underlying source included licensed contact data — that redaction is disclosed directly on the page.",
     links: [{ label: "View live", href: "https://climate-market-map-rileye.zocomputer.io" }],
     accent: "oklch(0.58 0.19 292)",
   },
@@ -40,7 +40,7 @@ const PROJECTS: Project[] = [
       "Point it at any website — it scrapes the content, auto-generates categories and audience types, and publishes a searchable FAQ hub with an embedded AI chatbot and admin tools.",
     tags: ["Web scraping", "Multi-tenant", "AI chatbot"],
     writeup:
-      "Give it any website URL and it scrapes the content, auto-generates FAQ categories and audience types, and publishes a searchable public FAQ hub with an embedded AI chatbot. I built it to replace a manual, one-off FAQ-writing process with something repeatable: the scraper and classification pipeline do the first pass, and a separate admin dashboard lets a real person review, edit, and approve entries before anything goes live.",
+      "Give it any website URL and it scrapes the content, auto-generates FAQ categories and audience types, and publishes a searchable public FAQ hub with an embedded AI chatbot. I built it to replace a manual, one-off FAQ-writing process with something repeatable: the scraper and classification pipeline do the first pass, and a separate admin dashboard lets a real person review, edit, and approve entries before anything goes live. The original version also posted new visitor questions to Slack and locked the admin dashboard behind a one-time email code. Those, along with the AI scraping and chatbot, are turned off in this public version.",
     links: [
       { label: "User side", href: "https://faq-dashboard-rileye.zocomputer.io/faq/zo-faqs" },
       { label: "Admin dashboard", href: "https://faq-dashboard-rileye.zocomputer.io/" },
@@ -62,10 +62,10 @@ const PROJECTS: Project[] = [
     kicker: "Capstone",
     title: "Fantasy Draft Helper",
     description:
-      "Multi-user fantasy football dashboard — Sleeper & ESPN sync, live draft assistant, waiver-wire recommendations, and an AI chat grounded in your own league data.",
+      "My capstone: a fantasy football tool I wanted for myself, rebuilt as a product anyone could use. Sleeper and ESPN sync, a live draft assistant, and waiver recommendations, plus a demo league for visitors who'd rather not log in.",
     tags: ["Full-stack", "Bun / Hono / React", "Multi-tenant"],
     writeup:
-      "A full-stack fantasy football app that syncs directly with a user's Sleeper or ESPN league, then layers a live draft assistant, waiver-wire add/drop recommendations, and an AI chatbot grounded in that league's actual data on top. I built it as my capstone to go beyond a single-league personal tool — every user gets their own isolated session and database, so the app works for anyone's league, not just mine, and the draft/waiver logic reacts to real roster and scoring settings instead of generic rankings.",
+      "I started this because I wanted it for my own league, then turned my capstone into making it a real product. It syncs with a Sleeper or ESPN league, runs a live draft assistant, and suggests waiver pickups based on that league's actual roster and scoring settings. Every user gets their own isolated session, and a demo league lets anyone simulate a full 12-team draft without connecting an account.\n\nThe AI draft chatbot turned out to be by far the most useful feature, and it taught me the most. In demos it worked perfectly. In a live draft, it took far too long to sync new picks and come back with an answer, and in a draft a late answer is a useless one. If I rebuilt it, response speed would be the number one priority, ahead of any feature. I'm still proud of what I built and the thinking behind it. (The chatbot is turned off in this public version.)",
     links: [{ label: "View live", href: "https://draft-app-rileye.zocomputer.io" }],
     accent: "oklch(0.65 0.19 25)",
   },
@@ -279,7 +279,7 @@ export default function Home() {
                   </button>
                   {isOpen && (
                     <div className="space-y-4 border-t px-5 py-4">
-                      <p className="text-sm text-pretty leading-relaxed text-muted-foreground">
+                      <p className="text-sm text-pretty leading-relaxed text-muted-foreground whitespace-pre-line">
                         {project.writeup}
                       </p>
                       <div className="flex flex-wrap gap-2">
