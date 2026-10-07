@@ -1,6 +1,6 @@
 import { Database } from "bun:sqlite";
-import { mkdir } from "node:fs/promises";
-import { existsSync } from "node:fs";
+import { mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import { AsyncLocalStorage } from "node:async_hooks";
 
 // Request-scoped session storage — the session middleware in server.ts
@@ -35,6 +35,8 @@ export function getDb(sessionId?: string): Database {
     ? `${DATA_DIR}/${resolved}.db`
     : DEFAULT_DB_PATH;
 
+  // data/ isn't shipped with the repo, so a fresh install has to create it.
+  mkdirSync(dirname(dbPath), { recursive: true });
   const db = new Database(dbPath);
   db.run("PRAGMA journal_mode = WAL");
   db.run("PRAGMA synchronous = NORMAL");

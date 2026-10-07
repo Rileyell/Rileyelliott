@@ -29,7 +29,8 @@ const app = new Hono<AppEnv>();
 // Any handler can call c.get("sessionId") to scope its DB to this user.
 app.use("*", async (c, next) => {
   let sid = getCookie(c, "sid");
-  if (!sid) {
+  // sid becomes a filename (data/<sid>.db), so only accept ids we minted.
+  if (!sid || !/^[0-9a-f-]{36}$/.test(sid)) {
     sid = randomUUID();
     setCookie(c, "sid", sid, {
       httpOnly: true,
