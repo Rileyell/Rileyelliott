@@ -71,6 +71,12 @@ const PROJECTS: Project[] = [
   },
 ];
 
+const REFERENCES = [
+  "mark@kitesrm.com",
+  "christian@kitescouting.com",
+  "jacob@kitescouting.com",
+];
+
 const THEMES = {
   light: {
     background: "oklch(1 0 0)",
@@ -301,6 +307,25 @@ export default function Home() {
                 </Card>
               );
             })}
+          </div>
+        </section>
+
+        {/* References */}
+        <section className="mt-16">
+          <h2 className="font-mono text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            KITE Scouting References
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {REFERENCES.map((email) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                <Mail className="size-4" />
+                {email}
+              </a>
+            ))}
           </div>
         </section>
 
